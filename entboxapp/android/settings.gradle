@@ -1,0 +1,3 @@
+rootProject.name = 'entboxapp'
+
+include ':app'

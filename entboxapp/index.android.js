@@ -27,7 +27,8 @@ export default class entboxapp extends Component {
 
         this.state = {
             connected: false,
-            msg:""
+            msg:"",
+            incoming:""
         };
         this.socket = new WebSocket('ws://45.32.186.169:28475');
         this.socket.onopen = () => {
@@ -35,6 +36,7 @@ export default class entboxapp extends Component {
         };
         this.socket.onmessage = (e) => {
             console.log(e.data);
+            this.setState({incoming:e.data});
         };
         this.socket.onerror = (e) => {
             console.log(e.message);
@@ -76,7 +78,8 @@ export default class entboxapp extends Component {
                         Submit
                     </Text>
                 </TouchableOpacity>
-                    <Text>connected:{this.state.connected ? "true":"false"}</Text>
+                <Text>connected:{this.state.connected ? "true":"false"}</Text>
+                <Text>lastMsg:{this.state.incoming}</Text>
 
             </View>
         );
